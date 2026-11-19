@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gestão Escolar | José Bento de Carvalho Filho</title>
+<style>
+:root{--navy:#102b49;--navy2:#173c62;--blue:#3478b9;--sky:#eaf3fb;--ink:#17283b;--muted:#708196;--line:#e1e8f0;--bg:#f4f7fb;--white:#fff;--green:#13845b;--amber:#a66a12;--red:#b33d48;--shadow:0 18px 50px rgba(21,48,78,.09)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer;border:0}
+.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.eyebrow{font-size:10px;letter-spacing:1.7px;font-weight:800;color:#78a8d4}
+.btn{padding:11px 15px;border-radius:11px;font-weight:700;transition:.18s}.btn-primary{background:var(--blue);color:white;box-shadow:0 6px 16px #3478b933}.btn-primary:hover{background:#28679f;transform:translateY(-1px)}.btn-soft{background:#edf3f9;color:var(--navy)}.btn-danger{background:#fff0f1;color:var(--red)}.btn-small{padding:7px 10px;font-size:12px;border-radius:8px}
+.auth{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:#fff}
+.auth-art{background:radial-gradient(circle at 20% 15%,#3e77a7 0,#214d77 35%,#102b49 78%);color:white;padding:clamp(28px,6vw,76px);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.auth-art:before,.auth-art:after{content:"";position:absolute;border:1px solid #ffffff18;border-radius:50%;width:520px;height:520px;right:-190px;top:15%}.auth-art:after{width:350px;height:350px;right:-100px;top:25%}
+.brand{display:flex;align-items:center;gap:13px;position:relative;z-index:1}.brand-mark{width:48px;height:48px;border-radius:15px;background:#ffffff20;display:grid;place-items:center;font-size:25px;border:1px solid #ffffff25}.brand-name{font-weight:800;font-size:14px;line-height:1.35}.brand-sub{font-size:9px;letter-spacing:1.7px;color:#c7d8e8;margin-top:4px}
+.art-copy{position:relative;z-index:1;max-width:520px}.art-copy h1{font-size:clamp(32px,4vw,54px);line-height:1.08;letter-spacing:-1.7px;margin:18px 0}.art-copy p{color:#d5e3f0;line-height:1.7;max-width:440px}.feature-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}.feature-pills span{border:1px solid #ffffff2c;background:#ffffff12;border-radius:30px;padding:9px 12px;font-size:12px;color:#e3edf6}
+.art-foot{position:relative;z-index:1;color:#c2d4e5;font-size:11px}
+.auth-side{display:grid;place-items:center;padding:28px}.auth-card{width:min(430px,100%)}.auth-card h2{font-size:28px;letter-spacing:-.7px;margin:0 0 8px}.auth-card>p{font-size:13px;line-height:1.6;margin:0 0 25px;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:#f0f4f8;padding:5px;border-radius:12px;margin-bottom:22px}.tabs button{padding:10px;border-radius:9px;background:transparent;color:#64758a;font-size:13px;font-weight:700}.tabs button.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px #1a3a5a12}
+.field{display:grid;gap:7px;margin-bottom:15px}.field label{font-size:12px;font-weight:750;color:#42566d}.field input,.field select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:11px;background:white;outline:none;color:var(--ink)}.field input:focus,.field select:focus{border-color:#70a5d4;box-shadow:0 0 0 3px #3478b91a}.password-wrap{position:relative}.password-wrap input{padding-right:48px}.eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;color:#6d7d8e;padding:7px}
+.auth-submit{width:100%;margin-top:5px}.auth-note{font-size:11px;line-height:1.55;color:#78889a;background:#f4f7fa;padding:12px;border-radius:10px;margin-top:17px}.auth-msg{font-size:12px;margin:12px 0;color:var(--red);min-height:16px}
+.app{min-height:100vh;display:grid;grid-template-columns:258px 1fr}.sidebar{background:linear-gradient(180deg,var(--navy),#0c223b);color:#fff;padding:25px 17px;display:flex;flex-direction:column;gap:30px}.sidebar .brand{padding:0 8px}.sidebar .brand-mark{background:#ffffff16}.nav-label{font-size:9px;letter-spacing:1.6px;color:#91abc4;font-weight:800;padding:0 12px;margin-bottom:8px}.nav{display:grid;gap:5px}.nav button{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border-radius:10px;background:transparent;color:#c8d7e6;font-size:13px;font-weight:650}.nav button .ico{width:22px;text-align:center;font-size:16px}.nav button.active,.nav button:hover{background:#ffffff19;color:#fff}.side-bottom{margin-top:auto;padding:13px;border:1px solid #ffffff1a;border-radius:12px;color:#b6c9dc;font-size:11px;line-height:1.5}
+.main{padding:30px clamp(18px,3vw,42px);max-width:1500px;width:100%;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}.page-kicker{font-size:10px;letter-spacing:1.5px;font-weight:800;color:var(--blue)}.topbar h1{font-size:27px;letter-spacing:-.8px;margin:5px 0}.topbar p{font-size:12px;color:var(--muted);margin:0}.user-area{display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--line);padding:8px 10px 8px 8px;border-radius:14px}.avatar{width:36px;height:36px;border-radius:11px;background:var(--sky);display:grid;place-items:center;color:var(--navy);font-weight:800}.user-meta strong{display:block;font-size:12px}.user-meta span{font-size:10px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat,.panel{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 20px #173b5c06}.stat{padding:18px}.stat-head{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.stat-icon{width:37px;height:37px;display:grid;place-items:center;border-radius:11px;background:#edf4fb;font-size:18px}.stat strong{display:block;font-size:29px;letter-spacing:-1px;margin-top:12px}.stat small{color:var(--muted);font-size:10px}
+.grid-main{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.panel{padding:20px}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:17px}.panel h2{font-size:16px;margin:0 0 5px}.panel-head p{font-size:11px;color:var(--muted);margin:0}
+.equip-list{display:grid;gap:10px}.equip-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;background:#f7f9fc;border:1px solid #edf1f5;border-radius:12px}.equip-left{display:flex;align-items:center;gap:11px}.equip-ico{width:38px;height:38px;display:grid;place-items:center;background:#eaf2fa;border-radius:11px;font-size:18px}.equip-left strong{display:block;font-size:12px}.equip-left small{font-size:10px;color:var(--muted)}.quantity{font-weight:800;font-size:16px}.quantity small{font-size:10px;color:var(--muted);font-weight:500}
+.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px;min-width:570px}th{text-align:left;color:#7b8a9b;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:11px 8px;border-bottom:1px solid var(--line)}td{padding:13px 8px;border-bottom:1px solid #edf1f5}tr:last-child td{border-bottom:0}.status{display:inline-block;padding:5px 8px;border-radius:30px;background:#e9f7f0;color:#16845b;font-size:10px;font-weight:800}.empty{color:var(--muted);font-size:12px;padding:18px 0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-grid .full{grid-column:1/-1}.stock-actions{display:flex;gap:7px;flex-wrap:wrap}.notice{padding:12px 14px;border-radius:11px;background:#edf5fc;color:#42627f;font-size:11px;line-height:1.55;margin-top:15px}
+.modal-back{position:fixed;inset:0;background:#071a2bb0;display:grid;place-items:center;padding:18px;z-index:5}.modal{background:white;border-radius:17px;padding:22px;width:min(440px,100%);box-shadow:var(--shadow)}.modal h3{margin:0 0 8px}.modal p{font-size:12px;color:var(--muted);margin:0 0 18px}
+@media(max-width:1000px){.auth{grid-template-columns:.85fr 1.15fr}.app{grid-template-columns:220px 1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid-main{grid-template-columns:1fr}}
+@media(max-width:700px){.auth{grid-template-columns:1fr}.auth-art{min-height:260px;padding:25px}.auth-art .art-copy h1{font-size:30px}.auth-art .art-copy p{font-size:12px}.auth-art .feature-pills{margin-top:14px}.auth-art .art-foot{display:none}.auth-side{padding:28px 20px}.app{grid-template-columns:1fr}.sidebar{padding:13px;gap:13px}.sidebar .brand{padding:0 5px}.nav-label{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:10px;font-size:11px}.side-bottom{display:none}.main{padding:20px 14px}.topbar{align-items:flex-start;flex-direction:column}.user-area{align-self:stretch}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:24px}.panel{padding:15px}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}}
+
+/* ===== Identidade visual renovada: inspiração institucional do Piauí ===== */
+:root{
+ --navy:#12365b;--navy2:#1b4c78;--blue:#1769aa;--sky:#eaf3fb;
+ --ink:#172b40;--muted:#687d91;--line:#dce6ee;--bg:#f2f6f8;
+ --white:#fff;--green:#16845b;--amber:#d5a323;--red:#b33d48;
+ --shadow:0 16px 42px rgba(18,54,91,.10)
+}
+html{scroll-behavior:smooth}
+body{
+ background:linear-gradient(180deg,#f7fafc 0%,#eef4f7 100%);
+ color:var(--ink)
+}
+body:before{
+ content:"";display:block;height:7px;
+ background:linear-gradient(90deg,#16845b 0 34%,#f2c94c 34% 67%,#1769aa 67% 100%)
+}
+button,input,select{font-family:inherit}
+.btn{border-radius:10px;letter-spacing:.1px}
+.btn-primary{
+ background:linear-gradient(135deg,#1769aa,#124f83);
+ box-shadow:0 7px 18px rgba(23,105,170,.22)
+}
+.btn-primary:hover{background:linear-gradient(135deg,#145d98,#103f6a)}
+.btn-soft{background:#edf4f8;color:#17476d;border:1px solid #e0eaf1}
+.auth{background:#fff}
+.auth-art{
+ background:
+  radial-gradient(ellipse at 82% 18%,rgba(242,201,76,.22),transparent 30%),
+  radial-gradient(ellipse at 12% 90%,rgba(22,132,91,.24),transparent 35%),
+  linear-gradient(145deg,#174c78 0%,#12365b 58%,#0c2947 100%);
+}
+.auth-art:before{border-color:#ffffff20}
+.auth-art:after{border-color:#f2c94c38}
+.brand-mark{
+ background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.08));
+ border:1px solid rgba(255,255,255,.3);
+ box-shadow:0 8px 22px rgba(0,0,0,.10)
+}
+.brand-sub{letter-spacing:1.45px}
+.eyebrow{color:#8ec5e9}
+.auth-card h2{color:#173b5d}
+.tabs{background:#edf3f7}
+.tabs button.active{color:#145a91}
+.field input:focus,.field select:focus{
+ border-color:#4a9acb;box-shadow:0 0 0 4px rgba(23,105,170,.12)
+}
+.auth-note{border-left:3px solid #d5a323;background:#f5f8fa}
+.app{background:transparent}
+.sidebar{
+ background:
+  radial-gradient(circle at 15% 0%,rgba(43,117,160,.35),transparent 32%),
+  linear-gradient(180deg,#12365b,#0d2946);
+ box-shadow:8px 0 30px rgba(14,43,70,.07)
+}
+.sidebar .brand-mark{border-color:#ffffff2c}
+.nav button{transition:background .18s ease,transform .18s ease}
+.nav button.active{
+ background:linear-gradient(90deg,rgba(35,133,183,.36),rgba(255,255,255,.10));
+ box-shadow:inset 3px 0 #e5bd42;color:#fff
+}
+.nav button:hover{transform:translateX(2px)}
+.side-bottom{border-color:#ffffff25;background:#ffffff08}
+.main{padding-top:34px}
+.page-kicker{color:#16845b}
+.topbar h1{color:#173b5d;font-size:29px}
+.user-area{
+ border:1px solid #e0e9ef;box-shadow:0 5px 18px rgba(18,54,91,.05)
+}
+.avatar{background:linear-gradient(145deg,#e4f2fa,#d8eee5);color:#14517d}
+.stat,.panel{
+ border:1px solid #e1eaf0;border-radius:17px;
+ box-shadow:0 7px 24px rgba(18,54,91,.055);
+ transition:transform .18s ease,box-shadow .18s ease
+}
+.stat:hover,.panel:hover{box-shadow:0 12px 30px rgba(18,54,91,.09)}
+.stat{position:relative;overflow:hidden}
+.stat:after{
+ content:"";position:absolute;right:-22px;bottom:-38px;width:100px;height:100px;
+ border-radius:50%;background:rgba(23,105,170,.045);pointer-events:none
+}
+.stat-icon{background:#eaf3f8;color:#1769aa}
+.stat strong{color:#153f64}
+.panel h2{color:#173b5d}
+.equip-row{
+ background:#f7fafc;border-color:#e8eff4;
+ transition:border-color .18s ease,transform .18s ease
+}
+.equip-row:hover{border-color:#c7dce9;transform:translateY(-1px)}
+.equip-ico{background:linear-gradient(145deg,#eaf3fb,#e4f3ed)}
+.quantity{color:#174c78}
+th{color:#648096}
+td{color:#30475b}
+.status{background:#e7f5ee;color:#14734f}
+.notice{background:#edf5f8;border-left:3px solid #d5a323;color:#3e6078}
+.modal{border:1px solid #e2eaf0}
+.modal-back{backdrop-filter:blur(4px)}
+#stockManage .equip-row,#stockSummary .equip-row{border-radius:13px}
+@media(max-width:700px){
+ body:before{height:5px}
+ .sidebar{background:linear-gradient(100deg,#12365b,#174c78)}
+ .nav button.active{box-shadow:inset 0 -3px #e5bd42}
+ .main{padding-top:22px}
+ .topbar h1{font-size:25px}
+ .stat,.panel{border-radius:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;transition:none!important}
+}
+
+</style>
+<script type="module" src="./config.js"></script>
+</head>
+<body>
+<section id="auth" class="auth">
+ <div class="auth-art">
+  <div class="brand"><div class="brand-mark">🎓</div><div><div class="brand-name">José Bento de Carvalho Filho</div><div class="brand-sub">GESTÃO ESCOLAR • PIAUÍ</div></div></div>
+  <div class="art-copy"><div class="eyebrow">ORGANIZAÇÃO • TECNOLOGIA • EDUCAÇÃO</div><h1>Os recursos da escola, organizados em um só lugar.</h1><p>Uma plataforma para agendar equipamentos, acompanhar disponibilidades e registrar cada retirada e devolução com praticidade.</p><div class="feature-pills"><span>▦ Reservas inteligentes</span><span>▣ Controle de estoque</span><span>↔ Movimentações</span></div></div>
+  <div class="art-foot">Plataforma interna · Escola José Bento de Carvalho Filho · Piauí</div>
+ </div>
+ <div class="auth-side"><div class="auth-card">
+  <div class="eyebrow" style="color:var(--blue)">ÁREA RESTRITA</div><h2 id="authTitle">Acesse sua conta</h2><p id="authSubtitle">Entre com seu e-mail e sua senha para continuar.</p>
+  <div class="tabs"><button id="tabLogin" class="active" type="button">Entrar</button><button id="tabRegister" type="button">Criar conta</button></div>
+  <form id="loginForm">
+   <div class="field"><label for="loginEmail">E-mail</label><input id="loginEmail" type="email" placeholder="voce@escola.com" required></div>
+   <div class="field"><label for="loginPassword">Senha</label><div class="password-wrap"><input id="loginPassword" type="password" placeholder="Digite sua senha" required><button class="eye" type="button" data-eye="loginPassword">◉</button></div></div>
+   <button class="btn btn-primary auth-submit">Entrar no sistema →</button>
+  </form>
+  <form id="registerForm" class="hidden">
+   <div class="field"><label for="regName">Nome completo</label><input id="regName" required placeholder="Seu nome"></div>
+   <div class="field"><label for="regEmail">E-mail</label><input id="regEmail" type="email" required placeholder="voce@escola.com"></div>
+   <div class="field"><label for="regRole">Tipo de conta</label><select id="regRole"><option value="Professor">Professor</option><option value="Coordenador">Coordenador</option></select></div>
+   <div class="field"><label for="regPassword">Criar senha</label><input id="regPassword" type="password" minlength="8" required placeholder="Mínimo de 8 caracteres"></div>
+   <button class="btn btn-primary auth-submit">Solicitar cadastro →</button>
+  </form>
+  <div class="auth-msg" id="authMsg"></div>
+  <div class="auth-note"><strong>Acesso administrativo:</strong> selecione “Entrar” e use o e-mail administrativo cadastrado e a senha inicial fornecida pela direção. Não existe cadastro público de administrador.</div>
+  <div class="small muted" style="text-align:center;margin-top:17px">Acesso exclusivo à comunidade escolar</div>
+ </div></div>
+</section>
+
+<div id="app" class="app hidden">
+ <aside class="sidebar">
+  <div class="brand"><div class="brand-mark">🎓</div><div><div class="brand-name">José Bento de Carvalho Filho</div><div class="brand-sub">GESTÃO DE RECURSOS • PIAUÍ</div></div></div>
+  <div><div class="nav-label">MENU PRINCIPAL</div><nav class="nav">
+   <button class="active" data-page="overview"><span class="ico">▦</span>Visão geral</button>
+   <button data-page="booking"><span class="ico">＋</span>Nova reserva</button>
+   <button data-page="reservations"><span class="ico">▤</span>Reservas</button>
+   <button data-page="stock" id="navStock"><span class="ico">▣</span>Equipamentos</button>
+   <button data-page="movements"><span class="ico">↔</span>Retirada e devolução</button>
+   <button data-page="users" id="navUsers"><span class="ico">♙</span>Usuários</button>
+  </nav></div>
+  <div class="side-bottom">Sistema de organização dos recursos escolares.<br><br><span style="color:#fff">Sistema conectado</span> · Dados sincronizados na nuvem.</div>
+ </aside>
+ <main class="main">
+  <header class="topbar"><div><div class="page-kicker">GESTÃO ESCOLAR</div><h1 id="pageTitle">Visão geral</h1><p id="pageDesc">Acompanhe os recursos e as reservas da escola.</p></div><div class="user-area"><div class="avatar" id="avatar">U</div><div class="user-meta"><strong id="userName">Usuário</strong><span id="userRole">Professor</span></div><button class="btn btn-soft btn-small" id="logout">Sair</button></div></header>
+  <section id="overviewPage">
+   <div class="stats">
+    <div class="stat"><div class="stat-head">Computadores <span class="stat-icon">💻</span></div><strong id="statComputers">12</strong><small>unidades livres hoje*</small></div>
+    <div class="stat"><div class="stat-head">Tablets <span class="stat-icon">📱</span></div><strong id="statTablets">20</strong><small>unidades livres hoje*</small></div>
+    <div class="stat"><div class="stat-head">Data shows <span class="stat-icon">📽️</span></div><strong id="statProjectors">4</strong><small>unidades livres hoje*</small></div>
+    <div class="stat"><div class="stat-head">Reservas <span class="stat-icon">📅</span></div><strong id="statReservations">0</strong><small>registros no sistema</small></div>
+   </div>
+   <div class="grid-main">
+    <div class="panel"><div class="panel-head"><div><h2>Reservas recentes</h2><p>Últimos agendamentos registrados.</p></div><button class="btn btn-soft btn-small" data-goto="reservations">Ver todas</button></div><div id="recentTable"></div></div>
+    <div class="panel"><div class="panel-head"><div><h2>Resumo do estoque</h2><p>Quantidade total cadastrada.</p></div></div><div id="stockSummary" class="equip-list"></div></div>
+   </div>
+   <div class="notice">A disponibilidade é calculada com base nas reservas confirmadas e no estoque cadastrado.</div>
+  </section>
+  <section id="bookingPage" class="hidden"><div class="panel" style="max-width:780px"><div class="panel-head"><div><h2>Agendar equipamento</h2><p>A reserva será confirmada automaticamente se houver unidades disponíveis.</p></div></div><form id="bookingForm" class="form-grid">
+   <div class="field full"><label>Equipamento</label><select id="bookEquipment"></select></div>
+   <div class="field"><label>Quantidade</label><input id="bookQuantity" type="number" min="1" value="1" required></div>
+   <div class="field"><label>Data de utilização</label><input id="bookDate" type="date" required></div>
+   <div class="field"><label>Horário inicial</label><input id="bookStart" type="time" required></div>
+   <div class="field"><label>Horário final</label><input id="bookEnd" type="time" required></div>
+   <div class="field full"><label>Finalidade / turma</label><input id="bookPurpose" required placeholder="Ex.: aula de Ciências — 8º ano"></div>
+   <div class="full"><button class="btn btn-primary">Confirmar reserva automaticamente</button></div>
+  </form></div></section>
+  <section id="reservationsPage" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Reservas cadastradas</h2><p>Consulte os agendamentos da escola.</p></div></div><div id="allTable"></div></div></section>
+  <section id="stockPage" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Gerenciar equipamentos</h2><p>Edite quantidades, cadastre materiais e desative itens.</p></div></div>
+   <div id="stockAdminNotice" class="notice">Somente o administrador pode alterar o inventário.</div><div id="stockManage" class="equip-list"></div>
+   <form id="addEquipmentForm" class="form-grid" style="margin-top:22px;padding-top:20px;border-top:1px solid var(--line)">
+    <div class="field"><label>Nome do novo equipamento</label><input id="newEquipmentName" required placeholder="Ex.: Caixa de som"></div>
+    <div class="field"><label>Quantidade inicial</label><input id="newEquipmentQty" type="number" min="0" required placeholder="Ex.: 5"></div>
+    <div class="full"><button class="btn btn-primary">＋ Adicionar equipamento</button></div>
+   </form>
+  </div></section>
+  <section id="movementsPage" class="hidden"><div class="panel"><div class="panel-head"><div><h2>Retirada e devolução</h2><p>Registre a movimentação dos equipamentos reservados.</p></div></div><div id="movementTable"></div></div></section>
+  <section id="usersPage" class="hidden">
+   <div class="panel">
+    <div class="panel-head"><div><h2>Gerenciar usuários</h2><p>Gerencie as funções e permissões dos usuários cadastrados.</p></div></div>
+    <div class="notice">Novos usuários devem ser convidados em Authentication → Users no painel Supabase. Após o primeiro acesso, aparecerão aqui para que um administrador defina a função.</div>
+    <div class="notice" style="margin:18px 0 22px">Por segurança, a criação de contas é feita pelo convite do Supabase Auth. Não armazenamos nem alteramos senhas de outras pessoas pelo navegador.</div>
+    <div id="usersTable"></div>
+   </div>
+  </section>
+ </main>
+</div>
+<div id="editModal" class="modal-back hidden"><div class="modal"><h3 id="modalTitle">Editar quantidade</h3><p id="modalDesc">Informe a nova quantidade total.</p><div class="field"><label>Quantidade total</label><input id="editQty" type="number" min="0"></div><div style="display:flex;justify-content:flex-end;gap:8px"><button class="btn btn-soft" id="cancelEdit">Cancelar</button><button class="btn btn-primary" id="saveEdit">Salvar alteração</button></div></div></div>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./config.js";
+
+const $ = id => document.getElementById(id);
+const safe = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmtDate = s => String(s).split("-").reverse().join("/");
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let current = null, profile = null, stock = [], bookings = [], users = [], editingId = null, authMode = "login", channel = null;
+
+const roleLabel = r => ({admin:"Administrador",coordinator:"Coordenador",professor:"Professor"}[r] || "Professor");
+const isAdmin = () => profile?.role === "admin";
+const isStaff = () => ["admin","coordinator"].includes(profile?.role);
+const authMessage = (msg, bad=false) => { $("authMsg").textContent = msg; $("authMsg").style.color = bad ? "var(--red)" : "var(--green)"; };
+
+function setMode(mode) {
+  authMode=mode;
+  $("loginForm").classList.toggle("hidden",mode!=="login");
+  $("registerForm").classList.toggle("hidden",mode!=="register");
+  $("tabLogin").classList.toggle("active",mode==="login");
+  $("tabRegister").classList.toggle("active",mode==="register");
+  $("authTitle").textContent=mode==="login"?"Acesse sua conta":"Criar acesso escolar";
+  $("authSubtitle").textContent=mode==="login"?"Entre com seu e-mail e sua senha para continuar.":"Crie uma conta de professor. A direção poderá ajustar sua função.";
+  $("authMsg").textContent="";
+}
+$("tabLogin").onclick=()=>setMode("login");
+$("tabRegister").onclick=()=>setMode("register");
+document.querySelectorAll("[data-eye]").forEach(b=>b.onclick=()=>{const i=$(b.dataset.eye);i.type=i.type==="password"?"text":"password";});
+
+$("loginForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const btn=e.submitter; btn.disabled=true;
+  const {error}=await supabase.auth.signInWithPassword({email:$("loginEmail").value.trim(),password:$("loginPassword").value});
+  btn.disabled=false;
+  if(error) return authMessage(error.message,true);
+  await boot();
+});
+$("registerForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const btn=e.submitter; btn.disabled=true;
+  const {data,error}=await supabase.auth.signUp({
+    email:$("regEmail").value.trim(),
+    password:$("regPassword").value,
+    options:{data:{full_name:$("regName").value.trim()}}
+  });
+  btn.disabled=false;
+  if(error) return authMessage(error.message,true);
+  if(data.session) await boot();
+  else authMessage("Cadastro iniciado. Confira seu e-mail para confirmar a conta antes de entrar.");
+});
+
+async function loadProfile() {
+  const {data,error}=await supabase.from("profiles").select("*").eq("id",current.id).single();
+  if(error) throw error;
+  if(!data.is_active) { await supabase.auth.signOut(); throw new Error("Seu acesso está bloqueado. Procure a direção da escola."); }
+  profile=data;
+}
+async function loadData() {
+  const [s,b]=await Promise.all([
+    supabase.from("equipment").select("*").order("name"),
+    supabase.from("bookings").select("*, equipment(name)").order("created_at",{ascending:false})
+  ]);
+  if(s.error) throw s.error;
+  if(b.error) throw b.error;
+  stock=s.data||[];
+  bookings=(b.data||[]).map(r=>({
+    id:r.id,itemId:r.equipment_id,item:r.equipment?.name||"Equipamento removido",
+    qty:r.quantity,date:r.booking_date,start:r.start_time.slice(0,5),end:r.end_time.slice(0,5),
+    purpose:r.purpose,person:r.requester_name||"Usuário",status:r.status==="confirmed"?"Confirmada":"Cancelada",
+    picked:!!r.picked_up_at,returned:!!r.returned_at,user_id:r.user_id
+  }));
+  if(isAdmin()) {
+    const u=await supabase.from("profiles").select("*").order("full_name");
+    if(u.error) throw u.error;
+    users=u.data||[];
+  } else users=[];
+}
+function subscribeRealtime() {
+  if(channel) supabase.removeChannel(channel);
+  channel=supabase.channel("school-live")
+    .on("postgres_changes",{event:"*",schema:"public",table:"equipment"},()=>refreshData())
+    .on("postgres_changes",{event:"*",schema:"public",table:"bookings"},()=>refreshData())
+    .on("postgres_changes",{event:"*",schema:"public",table:"profiles"},()=>refreshData())
+    .subscribe();
+}
+async function refreshData() { try { await loadData(); fillEquipment(); render(); if(isAdmin())renderUsers(); } catch(e){console.error(e);} }
+
+async function boot() {
+  const {data:{user}}=await supabase.auth.getUser();
+  if(!user){current=null;profile=null;$("auth").classList.remove("hidden");$("app").classList.add("hidden");return;}
+  current=user;
+  try { await loadProfile(); await loadData(); }
+  catch(e){authMessage(e.message||"Não foi possível carregar seu perfil.",true);return;}
+  $("auth").classList.add("hidden");$("app").classList.remove("hidden");
+  $("userName").textContent=profile.full_name||user.email;
+  $("userRole").textContent=roleLabel(profile.role);
+  $("avatar").textContent=(profile.full_name||user.email||"U").slice(0,1).toUpperCase();
+  $("navUsers").classList.toggle("hidden",!isAdmin());
+  $("navStock").classList.remove("hidden");
+  $("stockAdminNotice").textContent=isAdmin()?"Você pode editar o inventário.":"Somente administradores podem alterar o inventário.";
+  $("addEquipmentForm").classList.toggle("hidden",!isAdmin());
+  $("stockManage").classList.toggle("hidden",false);
+  $("usersPage").classList.toggle("hidden",!isAdmin());
+  $("bookDate").min=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
+  fillEquipment(); render(); subscribeRealtime();
+}
+$("logout").onclick=async()=>{if(channel)await supabase.removeChannel(channel);await supabase.auth.signOut();current=null;profile=null;boot();};
+supabase.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_OUT"){current=null;profile=null;$("auth").classList.remove("hidden");$("app").classList.add("hidden");} });
+
+const pageInfo={
+ overview:["Visão geral","Acompanhe os recursos e as reservas da escola."],
+ booking:["Nova reserva","Agende equipamentos para suas atividades."],
+ reservations:["Reservas","Consulte os agendamentos da escola."],
+ stock:["Equipamentos","Consulte o estoque disponível."],
+ movements:["Retirada e devolução","Registre a movimentação dos equipamentos."],
+ users:["Usuários","Gerencie as funções e permissões."]
+};
+function showPage(page){
+ if(page==="users"&&!isAdmin())return;
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ Object.keys(pageInfo).forEach(p=>$(p+"Page").classList.toggle("hidden",p!==page));
+ $("pageTitle").textContent=pageInfo[page][0];$("pageDesc").textContent=pageInfo[page][1];
+}
+document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>showPage(b.dataset.goto));
+
+function overlaps(a,b,c,d){return a<d&&c<b;}
+function available(itemId,date,start,end){
+ const item=stock.find(x=>x.id===itemId);if(!item)return 0;
+ const used=bookings.filter(r=>r.itemId===itemId&&r.date===date&&r.status==="Confirmada"&&overlaps(start,end,r.start,r.end)).reduce((a,r)=>a+r.qty,0);
+ return Math.max(0,item.quantity-used);
+}
+function fillEquipment(){
+ $("bookEquipment").innerHTML=stock.filter(x=>x.is_active).map(x=>`<option value="${x.id}">${safe(x.name)} — ${x.quantity} no estoque</option>`).join("");
+}
+function makeTable(rows){
+ if(!rows.length)return '<div class="empty">Nenhum registro por enquanto.</div>';
+ return `<div class="table-wrap"><table><thead><tr><th>Equipamento</th><th>Data</th><th>Horário</th><th>Qtd.</th><th>Solicitante</th><th>Status</th>${isStaff()?"<th>Ação</th>":""}</tr></thead><tbody>${rows.map(r=>`<tr><td>${safe(r.item)}</td><td>${fmtDate(r.date)}</td><td>${r.start}–${r.end}</td><td>${r.qty}</td><td>${safe(r.person)}</td><td><span class="status" style="${r.status==="Cancelada"?"background:#fff0f1;color:#b33d48":""}">${r.status}</span></td>${isStaff()?`<td>${r.status==="Confirmada"?`<button class="btn btn-danger btn-small" data-cancel="${r.id}">Cancelar</button>`:"—"}</td>`:""}</tr>`).join("")}</tbody></table></div>`;
+}
+function render(){
+ const today=new Date(),date=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+ const free=id=>available(id,date,"00:00","23:59");
+ $("statComputers").textContent=stock.find(x=>x.name.toLowerCase().includes("comput"))?free(stock.find(x=>x.name.toLowerCase().includes("comput")).id):0;
+ $("statTablets").textContent=stock.find(x=>x.name.toLowerCase().includes("tablet"))?free(stock.find(x=>x.name.toLowerCase().includes("tablet")).id):0;
+ $("statProjectors").textContent=stock.find(x=>x.name.toLowerCase().includes("data show")||x.name.toLowerCase().includes("projet"))?free(stock.find(x=>x.name.toLowerCase().includes("data show")||x.name.toLowerCase().includes("projet")).id):0;
+ $("statReservations").textContent=bookings.length;
+ $("recentTable").innerHTML=makeTable(bookings.slice(0,5));
+ $("allTable").innerHTML=makeTable(bookings);
+ $("stockSummary").innerHTML=stock.filter(x=>x.is_active).map(x=>`<div class="equip-row"><div class="equip-left"><div class="equip-ico">${x.icon||"📦"}</div><div><strong>${safe(x.name)}</strong><small>Estoque cadastrado</small></div></div><div class="quantity">${x.quantity} <small>un.</small></div></div>`).join("")||'<div class="empty">Nenhum equipamento ativo.</div>';
+ $("stockManage").innerHTML=stock.map(x=>`<div class="equip-row"><div class="equip-left"><div class="equip-ico">${x.icon||"📦"}</div><div><strong>${safe(x.name)}</strong><small>${x.is_active?"Equipamento ativo":"Equipamento desativado"}</small></div></div><div class="stock-actions"><strong class="quantity">${x.quantity} un.</strong>${isAdmin()?`<button class="btn btn-soft btn-small" data-edit="${x.id}">Editar</button><button class="btn btn-small ${x.is_active?"btn-danger":"btn-soft"}" data-toggle="${x.id}">${x.is_active?"Desativar":"Ativar"}</button>`:""}</div></div>`).join("");
+ $("movementTable").innerHTML=bookings.length?`<div class="table-wrap"><table><thead><tr><th>Equipamento</th><th>Solicitante</th><th>Retirada</th><th>Devolução</th></tr></thead><tbody>${bookings.map(r=>`<tr><td>${safe(r.item)} (${r.qty})</td><td>${safe(r.person)}</td><td>${r.picked?"Registrada":isStaff()?`<button class="btn btn-soft btn-small" data-move="${r.id}" data-field="picked">Registrar</button>`:"Pendente"}</td><td>${r.returned?"Registrada":r.picked&&isStaff()?`<button class="btn btn-soft btn-small" data-move="${r.id}" data-field="returned">Registrar</button>`:"Aguardando retirada"}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">As movimentações aparecerão aqui após a primeira reserva.</div>';
+}
+function renderUsers(){
+ if(!isAdmin())return;
+ $("usersTable").innerHTML=users.length?`<div class="table-wrap"><table style="min-width:650px"><thead><tr><th>Nome</th><th>E-mail</th><th>Função</th><th>Status</th></tr></thead><tbody>${users.map(u=>`<tr><td><strong>${safe(u.full_name||"—")}</strong></td><td>${safe(u.email||"")}</td><td><select data-role="${u.id}" style="padding:7px;border:1px solid var(--line);border-radius:8px"><option value="professor" ${u.role==="professor"?"selected":""}>Professor</option><option value="coordinator" ${u.role==="coordinator"?"selected":""}>Coordenador</option><option value="admin" ${u.role==="admin"?"selected":""}>Administrador</option></select></td><td>${u.is_active?"Ativo":"Bloqueado"}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">Nenhum usuário cadastrado ainda.</div>';
+}
+
+document.addEventListener("click",async e=>{
+ const cancel=e.target.closest("[data-cancel]");if(cancel){if(!isStaff())return;const {error}=await supabase.from("bookings").update({status:"cancelled"}).eq("id",cancel.dataset.cancel);if(error)alert(error.message);await refreshData();return;}
+ const edit=e.target.closest("[data-edit]");if(edit){if(!isAdmin())return;editingId=edit.dataset.edit;const item=stock.find(x=>x.id===editingId);$("modalTitle").textContent="Editar "+item.name;$("modalDesc").textContent="Informe a nova quantidade total deste equipamento.";$("editQty").value=item.quantity;$("editModal").classList.remove("hidden");return;}
+ const toggle=e.target.closest("[data-toggle]");if(toggle){if(!isAdmin())return;const item=stock.find(x=>x.id===toggle.dataset.toggle);const {error}=await supabase.from("equipment").update({is_active:!item.is_active}).eq("id",item.id);if(error)alert(error.message);await refreshData();return;}
+ const move=e.target.closest("[data-move]");if(move){if(!isStaff())return;const field=move.dataset.field;const patch=field==="picked"?{picked_up_at:new Date().toISOString()}:{returned_at:new Date().toISOString()};const {error}=await supabase.from("bookings").update(patch).eq("id",move.dataset.move);if(error)alert(error.message);await refreshData();}
+ const role=e.target.closest("[data-role]");if(role&&isAdmin()){const {error}=await supabase.from("profiles").update({role:role.value}).eq("id",role.dataset.role);if(error){alert(error.message);await refreshData();}else{await loadData();renderUsers();}}
+});
+$("cancelEdit").onclick=()=>$("editModal").classList.add("hidden");
+$("saveEdit").onclick=async()=>{
+ if(!isAdmin())return;
+ const qty=Number($("editQty").value);
+ if(!Number.isInteger(qty)||qty<0)return alert("Informe uma quantidade válida.");
+ const {error}=await supabase.from("equipment").update({quantity:qty}).eq("id",editingId);
+ if(error)alert(error.message);else $("editModal").classList.add("hidden");
+ await refreshData();
+};
+$("addEquipmentForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!isAdmin())return;
+ const name=$("newEquipmentName").value.trim(),quantity=Number($("newEquipmentQty").value);
+ if(!name||!Number.isInteger(quantity)||quantity<0)return alert("Confira o nome e a quantidade.");
+ const {error}=await supabase.from("equipment").insert({name,quantity,icon:"📦",is_active:true});
+ if(error)alert(error.message);else e.target.reset();
+ await refreshData();
+});
+$("bookingForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const equipment_id=$("bookEquipment").value,quantity=Number($("bookQuantity").value),booking_date=$("bookDate").value,start_time=$("bookStart").value,end_time=$("bookEnd").value,purpose=$("bookPurpose").value.trim();
+ if(!equipment_id||!booking_date||!start_time||!end_time||end_time<=start_time)return alert("Confira equipamento, data e intervalo de horário.");
+ if(!Number.isInteger(quantity)||quantity<1)return alert("Informe uma quantidade válida.");
+ const {data,error}=await supabase.rpc("create_booking",{p_equipment_id:equipment_id,p_quantity:quantity,p_booking_date:booking_date,p_start_time:start_time,p_end_time:end_time,p_purpose:purpose});
+ if(error)return alert(error.message);
+ e.target.reset();$("bookQuantity").value=1;await refreshData();showPage("reservations");alert("Reserva confirmada!");
+});
+
+$("bookDate").min=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
+async function start(){
+ const {data:{session}}=await supabase.auth.getSession();
+ if(session) await boot();
+}
+start().catch(e=>{console.error(e);authMessage(e.message||"Erro ao iniciar o sistema.",true);});
+</script>
+</body></html>
